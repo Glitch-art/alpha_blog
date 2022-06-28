@@ -1,4 +1,22 @@
-<h1>Articles listing page</h1>
+<h1 class="text-center mt-4">Listing all article</h1>
+
+<% @articles.each do |article| %>
+<div class="card text-center">
+  <div class="card-header">
+    Featured
+  </div>
+  <div class="card-body">
+    <h5 class="card-title"><%= article.title %></h5>
+    <p class="card-text"><%= article.description %></p>
+    <button type="button" class="btn btn-outline-success">View</button>
+    <button type="button" class="btn btn-outline-primary">Edit</button>
+    <button type="button" class="btn btn-outline-danger">Delete</button>
+  </div>
+  <div class="card-footer text-muted">
+    Created about //,edited about //
+  </div>
+</div>
+<% end %>
 
 <table>
   <thead>

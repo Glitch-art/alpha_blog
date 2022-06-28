@@ -1,0 +1,40 @@
+// inside app/frontend/packs/application.scss  
+  
+#navbar_id {
+  background-color: black !important;
+}
+  
+.nav-link {
+  color: white !important;
+}
+
+#logo {
+  float: left;
+  font-size: 1.7em;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  font-weight: bold;
+}
+
+#home-container {
+  background-color: black;
+  // background-image: asset-url('img-home.jpg');
+  margin-top: 25px;
+}
+  
+#home-container-fluid{
+}
+  
+body{
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  background-color: lightgrey !important;
+}
+
+.content{
+  flex: 1;
+}
+// Import Bootstrap v5  
+@import "~bootstrap/scss/bootstrap";  
