@@ -1,10 +1,10 @@
-<div class="container text-center text-white" id="home-container">
+<div class="container shadow text-center text-white mb-3 rounded" id="home-container">
   <div class="p-5 mb-4 rounded-3">
     <div class="container-fluid py-5" id="home-container-fluid">
       <h1 class="display-5 fw-bold">Alpha Blog</h1>
-      <p class="fs-4">Textooooo</p>
-      <button class="btn btn-primary btn-lg" type="button">Articles listing</button>
-      <button class="btn btn-secondary btn-lg" type="button">About page</button>
+      <p class="fs-4">A CRUD designed in ruby on rails</p>
+      <%= link_to "Articles listing", articles_path, class: "btn btn-primary btn-lg" %>
+      <%= link_to "About page", about_path, class: "btn btn-secondary btn-lg" %>
     </div>
   </div>
 </div>

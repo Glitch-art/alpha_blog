@@ -1,44 +1,27 @@
-<h1 class="text-center mt-4">Listing all article</h1>
-
-<% @articles.each do |article| %>
-<div class="card text-center">
-  <div class="card-header">
-    Featured
-  </div>
-  <div class="card-body">
-    <h5 class="card-title"><%= article.title %></h5>
-    <p class="card-text"><%= article.description %></p>
-    <button type="button" class="btn btn-outline-success">View</button>
-    <button type="button" class="btn btn-outline-primary">Edit</button>
-    <button type="button" class="btn btn-outline-danger">Delete</button>
-  </div>
-  <div class="card-footer text-muted">
-    Created about //,edited about //
-  </div>
+<h1 class="text-center mt-4">Listing all articles</h1>
+<div class="container">
+  <% @articles.each do |article| %>
+    <div class="row justify-content-md-center">
+      <div class="col-8 mt-4">
+        <div class="card text-center shadow mb-2 bg-body rounded">
+          <div class="card-header fst-italic">
+            by Andrés Carranza
+          </div>
+          <div class="card-body">
+            <%= link_to article.title, article_path(article), class: "card-title text-success fs-5 text-decoration-none" %>
+            <p class="card-text"><%= truncate(article.description, length: 100) %></p>
+            <%= link_to "View", article_path(article), class: "btn btn-outline-success" %>
+            <%= link_to "Edit", edit_article_path(article), class: "btn btn-outline-primary" %>
+            <%= link_to "Delete", article_path(article), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-outline-danger" %>
+          </div>
+          <div class="card-footer text-muted">
+            Created <%= time_ago_in_words(article.created_at) %> ago, edited <%= time_ago_in_words(article.updated_at) %> ago
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
 </div>
-<% end %>
-
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Description</th>
-      <th colspan="3">Actions</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @articles.each do |article| %>
-      <tr>
-        <td><%= article.title %></td>
-        <td><%= article.description %></td>
-        <td><%= link_to 'Show', article_path(article) %></td>
-        <td><%= link_to 'Edit', edit_article_path(article) %></td>
-        <td><%= link_to 'Delete', article_path(article), method: :delete, data: { confirm: "Are you sure?" }%></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table> 
 <p>
 <%= link_to 'Create new article', new_article_path %> | 
 <%= link_to 'Home page', root_path() %>
