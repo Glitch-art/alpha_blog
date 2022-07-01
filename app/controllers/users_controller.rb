@@ -2,6 +2,26 @@ class UsersController < ApplicationController
   def new
     @user = User.new
   end
+  
+  def edit
+    @user = User.find(params[:id])
+  end
+  
+  def update
+    @user = User.find(params[:id])
+  
+    respond_to do |wants|
+      if @user.update(user_params)
+        flash[:notice] = 'Your account information was successfully updated.'
+        wants.html { redirect_to(articles_path) }
+        wants.xml  { head :ok }
+      else
+        wants.html { render :action => "edit" }
+        wants.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
+      end
+    end
+  end
+  
   def create
     @user = User.new(user_params)
   
