@@ -9,4 +9,21 @@
 
 <h3 class="text-center mt-4">Articles</h3>
 
+<div class="digg_pagination">
+  <div class="d-flex justify-content-center">
+    <%= will_paginate @articles, :container => false %>
+  </div>
+</div>
+
 <%= render 'articles/article' %>
+
+<div class="digg_pagination mt-2 mb-2">
+  <div class="d-flex justify-content-center">
+    <div class="page_info rounded">
+      <%= page_entries_info @articles %>
+    </div>
+  </div>
+  <div class="d-flex justify-content-center">
+    <%= will_paginate @articles, :container => false %>
+  </div>
+</div>
