@@ -1,0 +1,28 @@
+<h1 class="text-center mt-4 mb-4">Log In</h1>
+
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-10">
+      <%= form_with(scope: :session, url: login_path, class:"shadow-lg mb-3 p-3 bg-body rounded", local: true) do |f| %>
+        <div class="row g-3 align-items-center pb-3">
+          <div class="col-12">
+            <%= f.label :email, class: "form-label" %>
+            <%= f.email_field :email, class: "form-control shadow-sm rounded", type:"email", id:"inputDescription", placeholder: "Email address" %>
+          </div>
+        </div>
+        <div class="row g-3 align-items-center pb-3">
+          <div class="col-12">
+            <%= f.label :password, class: "form-label" %>
+            <%= f.password_field :password, class: "form-control shadow-sm rounded", type:"password", id:"inputDescription", placeholder: "Enter your password" %>
+          </div>
+        </div>
+        <div class="row g-3 justify-content-center pb-3">
+          <%= f.submit "Log In", class: "btn btn-success btn-lg col-auto" %>
+        </div>
+        <div class="text-center">
+        <%= link_to '[ Cancel and return to home page ]', root_path, class: "text-decoration-none text-info" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
