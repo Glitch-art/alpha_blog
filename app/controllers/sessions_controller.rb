@@ -4,25 +4,21 @@ class SessionsController < ApplicationController
   end
   
   def create
-    byebug
-    @session = Session.new(params[:session])
-    if @session.save
-      flash[:success] = "Session successfully created"
-      redirect_to @session
+    user = User.find_by(email: params[:session][:email].downcase)
+    if user && user.authenticate(params[:session][:password])
+      session[:user_id] = user.id
+      flash[:notice] = "Logged in successfully"
+      redirect_to user
     else
-      flash[:error] = "Something went wrong"
+      flash.now[:alert] = "There was someting wrong with your login details"
       render 'new'
     end
   end
 
   def destroy
-    @session = Session.find(params[:id])
-    if @session.destroy
-      flash[:success] = 'Session was successfully deleted.'
-      redirect_to sessions_url
-    else
-      flash[:error] = 'Something went wrong'
-      redirect_to sessions_url
-    end
+    session[:user_id] = nil
+    flash[:notice] = "Logged out."
+    redirect_to root_path
   end
+
 end
