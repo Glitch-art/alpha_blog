@@ -12,8 +12,10 @@
             <%= link_to article.title, article_path(article), class: "card-title text-success fs-5 text-decoration-none" %>
             <p class="card-text"><%= truncate(article.description, length: 100) %></p>
             <%= link_to "View", article_path(article), class: "btn btn-outline-success" %>
-            <%= link_to "Edit", edit_article_path(article), class: "btn btn-outline-primary" %>
-            <%= link_to "Delete", article_path(article), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-outline-danger" %>
+            <% if logged_in? && article.user == current_user %>
+              <%= link_to "Edit", edit_article_path(article), class: "btn btn-outline-primary" %>
+              <%= link_to "Delete", article_path(article), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-outline-danger" %>  
+            <% end %>
           </div>
           <div class="card-footer text-muted">
             Created <%= time_ago_in_words(article.created_at) %> ago, edited <%= time_ago_in_words(article.updated_at) %> ago
