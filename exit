@@ -1,0 +1,37 @@
+[1mdiff --git a/app/views/layouts/_navigation.html.erb b/app/views/layouts/_navigation.html.erb[m
+[1mindex 88800d6..a531ee0 100644[m
+[1m--- a/app/views/layouts/_navigation.html.erb[m
+[1m+++ b/app/views/layouts/_navigation.html.erb[m
+[36m@@ -9,17 +9,31 @@[m
+       <li class="nav-item">[m
+         <%= link_to "Bloggers", users_path, class: "nav-link" %>[m
+       </li>[m
+[32m+[m[41m      [m
+       <li class="nav-item dropdown">[m
+         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">[m
+           Articles[m
+         </a>[m
+         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">[m
+[31m-          <li><%= link_to "Create a new article", new_article_path, class: "dropdown-item" %></li>[m
+[32m+[m[32m           <% if logged_in? %>[m
+[32m+[m[32m            <li><%= link_to "Create a new article", new_article_path, class: "dropdown-item" %></li>[m
+[32m+[m[32m          <% end %>[m
+           <li><%= link_to "View articles", articles_path, class: "dropdown-item" %></li>[m
+         </ul>[m
+       </li>[m
+ [m
+       <% if logged_in? %>[m
+[32m+[m
+[32m+[m[32m        <li class="nav-item dropdown">[m
+[32m+[m[32m          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">[m
+[32m+[m[32m            Profile [ <%= current_user.username class: "nav-link fw-bold"%> ][m
+[32m+[m[32m          </a>[m
+[32m+[m[32m          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">[m
+[32m+[m[32m            <li><%= link_to "Create a new article", new_article_path, class: "dropdown-item" %></li>[m
+[32m+[m[32m            <li><%= link_to "View articles", articles_path, class: "dropdown-item" %></li>[m
+[32m+[m[32m          </ul>[m
+[32m+[m[32m        </li>[m
+[32m+[m
+         <li class="nav-item">[m
+           <%= link_to current_user.username, user_path(current_user), class: "nav-link fw-bold" %>[m
+         </li>[m
