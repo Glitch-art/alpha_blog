@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: %i[ show edit update ]
-  before_action :require_user, only: [:edit, :update]
-  before_action :require_same_user, only: [:edit, :update]
+  before_action :set_user, only: %i[ show edit update destroy ]
+  before_action :require_user, only: [:edit, :update, :destroy]
+  before_action :require_same_user, only: [:edit, :update, :destroy]
 
   def show
     @articles = @user.articles.paginate(page: params[:page], per_page: 5)
@@ -44,6 +44,17 @@ class UsersController < ApplicationController
         wants.html { render :action => "new" }
         wants.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
       end
+    end
+  end
+
+  def destroy
+    if @user.destroy
+      session[:user_id] = nil
+      flash[:success] = 'Account and all associated articles was successfully deleted.'
+      redirect_to root_path
+    else
+      flash[:error] = 'Something went wrong'
+      redirect_to root_path
     end
   end
   
